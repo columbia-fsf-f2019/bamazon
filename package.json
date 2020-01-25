@@ -1,0 +1,25 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "# Node.js & MySQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpgelber7495/bamazon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mpgelber7495/bamazon/issues"
+  },
+  "homepage": "https://github.com/mpgelber7495/bamazon#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "inquirer": "^7.0.3",
+    "mysql": "^2.18.1"
+  }
+}

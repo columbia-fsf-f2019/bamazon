@@ -1,0 +1,11 @@
+DROP DATABASE IF EXISTS platform;
+CREATE DATABASE platform;
+
+USE platform;
+
+CREATE TABLE users(
+    id INT NOT NULL AUTO_INCREMENT,
+    user VARCHAR(30) NOT NULL,
+    pass VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+)
