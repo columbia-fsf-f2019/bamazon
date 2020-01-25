@@ -46,10 +46,20 @@ function createNewUser() {
             .then(ans => {
               if (ans.pass === ans.passConfirm) {
                 bcrypt.hash(ans.pass, saltRounds).then(function(hash) {
-                  // Send hashed password to DB
+                  let userInfo = { user: ans.user, pass: hash };
+                  connection.query(
+                    "INSERT INTO users SET ?",
+                    userInfo,
+                    function(error) {
+                      if (error) throw error;
+                      console.log("Your user has been created!");
+                    }
+                  );
                 });
               }
             });
         });
     });
 }
+
+createNewUser();
