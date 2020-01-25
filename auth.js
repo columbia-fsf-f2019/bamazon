@@ -13,13 +13,17 @@ connection.connect();
 // Connection to bcrypt npm for hashing passwords
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const myPlaintextPassword = "s0//P4$$w0rD";
-const someOtherPlaintextPassword = "not_bacon";
 
 inquirer
   .prompt([{ message: "Enter user:", type: "prompt", name: "user" }])
   .then(ans => {
     inquirer
       .prompt([{ message: "Enter pass:", type: "password", name: "pass" }])
-      .then(ans => {});
+      .then(ans => {
+        bcrypt.hash(ans.pass, saltRounds).then(function(hash) {
+          // Send hashed password to DB
+        });
+        let hash = hashPass(ans.pass);
+        console.log(hash);
+      });
   });
