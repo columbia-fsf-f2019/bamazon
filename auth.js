@@ -14,16 +14,42 @@ connection.connect();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-inquirer
-  .prompt([{ message: "Enter user:", type: "prompt", name: "user" }])
-  .then(ans => {
-    inquirer
-      .prompt([{ message: "Enter pass:", type: "password", name: "pass" }])
-      .then(ans => {
-        bcrypt.hash(ans.pass, saltRounds).then(function(hash) {
-          // Send hashed password to DB
+function authIn() {
+  inquirer
+    .prompt([{ message: "Enter user:", type: "prompt", name: "user" }])
+    .then(ans => {
+      inquirer
+        .prompt([{ message: "Enter pass:", type: "password", name: "pass" }])
+        .then(ans => {
+          bcrypt.hash(ans.pass, saltRounds).then(function(hash) {
+            // Send hashed password to DB
+          });
         });
-        let hash = hashPass(ans.pass);
-        console.log(hash);
-      });
-  });
+    });
+}
+
+function createNewUser() {
+  inquirer
+    .prompt([{ message: "Enter new username:", type: "prompt", name: "user" }])
+    .then(ans => {
+      inquirer
+        .prompt([{ message: "Enter pass:", type: "password", name: "pass" }])
+        .then(ans => {
+          inquirer
+            .prompt([
+              {
+                message: "Re-enter pass:",
+                type: "password",
+                name: "passConfirm"
+              }
+            ])
+            .then(ans => {
+              if (ans.pass === ans.passConfirm) {
+                bcrypt.hash(ans.pass, saltRounds).then(function(hash) {
+                  // Send hashed password to DB
+                });
+              }
+            });
+        });
+    });
+}
