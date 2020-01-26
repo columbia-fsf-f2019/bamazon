@@ -31,10 +31,10 @@ function authIn() {
 function createNewUser() {
   inquirer
     .prompt([{ message: "Enter new username:", type: "prompt", name: "user" }])
-    .then(ans => {
+    .then(ans1 => {
       inquirer
         .prompt([{ message: "Enter pass:", type: "password", name: "pass" }])
-        .then(ans => {
+        .then(ans2 => {
           inquirer
             .prompt([
               {
@@ -43,16 +43,17 @@ function createNewUser() {
                 name: "passConfirm"
               }
             ])
-            .then(ans => {
-              if (ans.pass === ans.passConfirm) {
-                bcrypt.hash(ans.pass, saltRounds).then(function(hash) {
-                  let userInfo = { user: ans.user, pass: hash };
+            .then(ans3 => {
+              if (ans2.pass === ans3.passConfirm) {
+                bcrypt.hash(ans2.pass, saltRounds).then(function(hash) {
+                  let userInfo = { user: ans1.user, pass: hash };
                   connection.query(
                     "INSERT INTO users SET ?",
                     userInfo,
                     function(error) {
                       if (error) throw error;
-                      console.log("Your user has been created!");
+
+                      connection.end();
                     }
                   );
                 });
