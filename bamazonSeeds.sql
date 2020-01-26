@@ -1,41 +1,40 @@
 USE bamazon_DB;
 
 CREATE TABLE products (
-  ID INT NOT NULL AUTO_INCREMENT,
-  item_id INT(4) NULL,
+  item_id INT(3) NOT NULL AUTO_INCREMENT,
   product_name VARCHAR(45) NULL,
   department_name VARCHAR(45) NULL,
   price INT(4) NULL,
   stock_quantity INT(4) NULL,
-  PRIMARY KEY (ID)
+  PRIMARY KEY (item_id)
 );
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (1, "Microsoft Xbox", "Electronics", 399, 10);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Microsoft Xbox", "Electronics", 399, 10);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (2, "Sony Playstation", "Electronics", 499, 10);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Sony Playstation", "Electronics", 499, 10);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (3, "Northface Jacket", "Outdoor Apparel", 179, 20);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Northface Jacket", "Outdoor Apparel", 179, 20);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (4, "Columbia Jacket", "Outdoor Apparel", 150, 15);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Columbia Jacket", "Outdoor Apparel", 150, 15);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (5, "Nike AirMax Sneakers", "Footwear", 100, 10);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Nike AirMax Sneakers", "Footwear", 100, 10);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (6, "Timberland Work Boots", "Footwear", 130, 12);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Timberland Work Boots", "Footwear", 130, 12);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (7, "Vans T-Shirt", "Apparel", 29, 30);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Vans T-Shirt", "Apparel", 29, 30);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (8, "Express Polo", "Apparel", 79, 25);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Express Polo", "Apparel", 79, 25);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (9, "RayBan Sunglasses", "Outdoor Eyewear", 299, 5);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("RayBan Sunglasses", "Outdoor Eyewear", 299, 5);
 
-INSERT INTO products (item_id, product_name, department_name, price, stock_quantity)
-VALUES (10, "Oakley Sunglasses", "Outdoor Eyewear", 199, 8);
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("Oakley Sunglasses", "Outdoor Eyewear", 199, 8);
