@@ -13,17 +13,37 @@ connection.connect();
 // Connection to bcrypt npm for hashing passwords
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+let authorized = false;
 
 function authIn() {
   inquirer
     .prompt([{ message: "Enter user:", type: "prompt", name: "user" }])
-    .then(ans => {
+    .then(ansa => {
       inquirer
         .prompt([{ message: "Enter pass:", type: "password", name: "pass" }])
-        .then(ans => {
-          bcrypt.hash(ans.pass, saltRounds).then(function(hash) {
-            // Send hashed password to DB
-          });
+        .then(ansb => {
+          // Send hashed password to DB
+
+          connection.query(
+            "SELECT pass FROM users WHERE user = ?",
+            ansa.user,
+            function(error, results) {
+              if (error) throw error;
+
+              bcrypt.compare(ansb.pass, results[0].pass, function(err, res) {
+                if (err) throw err;
+                if (res) {
+                  authorized = true;
+                  console.log("You're logged in!");
+                  connection.end();
+                } else {
+                  console.log("Something didn't match. Try again!");
+                  // connection.end();
+                  authIn();
+                }
+              });
+            }
+          );
         });
     });
 }
@@ -57,10 +77,14 @@ function createNewUser() {
                     }
                   );
                 });
+              } else {
+                console.log("Your passwords don't match. Try again");
+                createNewUser();
               }
             });
         });
     });
 }
 
-createNewUser();
+// createNewUser();
+authIn();
