@@ -1,6 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-var divider = "\n--------------------------------------\n";
+var divider =
+  "\n--------------------------------------------------------------------\n";
 
 // create the connection information for the sql database
 var db = mysql.createConnection({
@@ -23,50 +24,32 @@ db.connect(function(err) {
   enterStorePrompt();
 });
 
-// The first should ask them the ID of the product they would like to buy.
-// The second message should ask how many units of the product they would like to buy.
-
-// function to handle an order asking for item id and qty desired
 function enterStorePrompt(hasAlreadyOrdered) {
-  // shows customer all the items available for purchase
   inquirer
     .prompt([
       {
         name: "enter",
-        message: "Welcome to Bamazon! Can I help you find something?",
+        message:
+          "WELCOME TO BAMAZON! Can I help you find something? Here is a list of our most popular items: ",
         type: "confirm"
-        // default: true
-
-        // options: [
-        //     "Yes you may, thank you!",
-        //     "Not today, I'm late for a meeting."
-        // ]
       }
     ])
     .then(function(customer) {
       if (customer.enter === true) {
         showItems();
       } else {
-        if (hasAlreadyOrdered){
-          console.log("Thanks for visiting, come back again soon!");
-        
+        if (hasAlreadyOrdered) {
+          console.log("Thank you for your business, come back again soon!");
         } else {
-        console.log(
-          "Thanks for visiting Bamazon, come back after your meeting!"
-        );
-        // enterStorePrompt();
-      }
+          console.log(
+            "Thanks for visiting! Come back when you have more time!"
+          );
+        }
       }
     });
 }
 
-// displayItems()
-
 function displayItems() {
-  // console.log(divider + "ALL ITEMS IN THE BAMAZON STORE: ")
-
-  // showItems();
-
   inquirer
     .prompt([
       {
@@ -79,8 +62,6 @@ function displayItems() {
         message: "How many of these items would you like to purchase?",
         type: "input"
       }
-
-      // INSERT INTO products (product_name, department_name, price, stock_quantity)
     ])
     .then(function(userPurchase) {
       db.query(
@@ -90,7 +71,7 @@ function displayItems() {
           for (var i = 0; i < res.length; i++) {
             if (userPurchase.inputQuantity > res[i].stock_quantity) {
               console.log(
-                "Unfortunately, we do not have enough stock to fulfill your order at this time. Try again."
+                "Our apologies! We do not have enough stock to fulfill your order at this time. Please check back later!"
               );
               enterStorePrompt();
             } else {
@@ -100,26 +81,12 @@ function displayItems() {
                 [stockQty, userPurchase.inputId],
                 function(err, res) {
                   if (err) throw err;
+
                   console.log(
-                    "Success! We will be sending your tracking number shortly!"
-                  
+                    "Thank you for your order! We will send your tracking number shortly!"
                   );
-                  enterStorePrompt(true);
                 }
               );
-
-              //   .then(answers => {
-              //     switch (answers.start) {
-              //         case "Yes you may, thank you!":
-              //             console.log("Entering the store...");
-              //             showItems();
-              //             break;
-              //         case "Not today, I'm late for a meeting.":
-              //             console.log(divider + "Come back soon!");
-              //             db.end();
-              //             break;
-              //     }
-              // });
             }
           }
         }
@@ -152,4 +119,3 @@ function showItems() {
     displayItems();
   });
 }
-// enterStorePrompt();
