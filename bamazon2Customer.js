@@ -38,13 +38,7 @@ function enterStorePrompt(hasAlreadyOrdered) {
       if (customer.enter === true) {
         showItems();
       } else {
-        if (hasAlreadyOrdered) {
-          console.log("Thank you for your business, come back again soon!");
-        } else {
-          console.log(
-            "Thanks for visiting! Come back when you have more time!"
-          );
-        }
+        console.log("Thanks for visiting! Come back when you have more time!");
       }
     });
 }
@@ -53,12 +47,12 @@ function displayItems() {
   inquirer
     .prompt([
       {
-        name: "inputId",
+        name: "itemId",
         message: "Please enter the item ID to be ordered",
         type: "input"
       },
       {
-        name: "inputQuantity",
+        name: "itemQuantity",
         message: "How many of these items would you like to purchase?",
         type: "input"
       }
@@ -66,25 +60,37 @@ function displayItems() {
     .then(function(userPurchase) {
       db.query(
         "SELECT * FROM products WHERE item_id=?",
-        userPurchase.inputId,
+        userPurchase.itemId,
         function(err, res) {
           for (var i = 0; i < res.length; i++) {
-            if (userPurchase.inputQuantity > res[i].stock_quantity) {
+            if (userPurchase.itemQuantity > res[i].stock_quantity) {
               console.log(
-                "Our apologies! We do not have enough stock to fulfill your order at this time. Please check back later!"
+                "Our apologies! We do not have enough stock to fulfill your order at this time. Please check back later! \n"
               );
+
               enterStorePrompt();
             } else {
-              var stockQty = res[i].stock_quantity - userPurchase.inputQuantity;
+              console.log(divider);
+              console.log(
+                "Got it! We are processing your order now... order CONFIRMED!"
+              );
+              console.log(divider);
+              console.log("ORDER SUMMARY:");
+              console.log("Item: " + res[i].product_name);
+              console.log("Department: " + res[i].department_name);
+              console.log("Price: " + res[i].price);
+              console.log("Quantity: " + userPurchase.itemQuantity);
+              console.log("Total: " + res[i].price * userPurchase.itemQuantity);
+              var stockQty = res[i].stock_quantity - userPurchase.itemQuantity;
               db.query(
                 "update products set stock_quantity = ? where item_id = ?",
-                [stockQty, userPurchase.inputId],
+                [stockQty, userPurchase.itemId],
                 function(err, res) {
                   if (err) throw err;
-
                   console.log(
-                    "Thank you for your order! We will send your tracking number shortly!"
+                    "THANK YOU FOR SHOPPING AT BAMAZON! You will receive a tracking number shortly!"
                   );
+                  console.log(divider);
                 }
               );
             }
@@ -93,6 +99,7 @@ function displayItems() {
       );
     });
 }
+
 function showItems() {
   console.log(
     divider + "WELCOME TO BAMAZON! HERE IS A LIST OF OUR NEWEST STOCK: "
