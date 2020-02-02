@@ -98,6 +98,22 @@ function buySomething() {
           `It's YOURS. You're total cost is $${items[answers.choice][3] *
             answers.quantity} \n\nOnce your payment is process, we will ship your item(s) out. Thank you for shopping with us!`
         );
+        var selectedItem = items[answers.choice][1];
+        var remainingQty = items[answers.choice][4] - answers.quantity;
+        items[answers.choice][4] = remainingQty;
+        function updateDB() {
+          connection.query(
+            `UPDATE products SET stock_quantity = ${remainingQty} WHERE product_name = '${selectedItem}'`,
+            function(err, result) {
+              if (err) throw err;
+            }
+          );
+        }
+        updateDB();
+        let data, output;
+        data = items;
+        output = table(data);
+        console.log(output);
       } else
         console.log(
           "Currently we do not have enough quantity of this product to fulfill your order. Please check again at another time for restock. \n \nWe apologize for the inconveninece. :("
