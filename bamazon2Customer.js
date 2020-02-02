@@ -24,7 +24,7 @@ db.connect(function(err) {
   enterStorePrompt();
 });
 
-function enterStorePrompt(hasAlreadyOrdered) {
+function enterStorePrompt() {
   inquirer
     .prompt([
       {
