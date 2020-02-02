@@ -4,7 +4,7 @@ This application allows user to access an inventory of items and select which it
 
 If the user is successful in their purchase, the application will provide them with a total cost for their purchase. The user will also be presented an updated version of the inventory table which instantly updates the quantity for items based on recent purchases both in the client and server side of the application.
 
-If the user is unsucceful in their purchase due to low quantity, they will be notified via a console message.
+If the user is unsucceful in their purchase due to low quantity, they will be notified via a console message and will be shown the inventory table again.
 
 ## Application Demo
 
