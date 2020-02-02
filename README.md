@@ -1,4 +1,4 @@
-# Bamazon: the ultimate shopping experience!  :shopping:
+# Bamazon: the ultimate shopping experience! 
 
 The BAMAZON experience begins with an initial greeting welcoming the customer and prompting them to answer Y/N if they would like to continue shopping. If yes, the user is presented with a list of the most popular items in stock. Each line-item in the table contains an id number as well as the corresponding department, price, and remaining stock quantity.
 
@@ -10,7 +10,7 @@ When an order is completed, a summary confirmation will be returned to the custo
 
 ![](images/customer-receipt.png)
 
-## Building Bamazon: Required tools & tech  :hammer_and_wrench:
+## Building Bamazon: Required tools & tech 
 
 To build this NODE.js command line application, NPM is initialized and Inquirer and mysql NPM packages are installed in the root directory. The Inquirer module is required in order to prompt the customer.
 
@@ -21,11 +21,11 @@ The inventory feauture is built using MySQL database with a products table conta
 
 ## Functionality for the Bamazon customer experience 
 
-### Example of prompt with customer input; :shopping_cart:
+### Example of prompt with customer input; 
 
 ![](images/bam_best_sweater.gif)
 
-### When the order exceeds stock levels; :x:
+### When the order exceeds stock levels; 
 
 ![](images/no-stock.png)
 
