@@ -1,4 +1,4 @@
-# Bamazon, The Ultimate Shopping Experience!
+# Bamazon: ## The Ultimate Shopping Experience!
 
 The BAMAZON experience begins with an initial greeting welcoming the customer and prompting them to answer Y/N if they would like to continue shopping. If yes, the user is presented with a list of the most popular items in stock. Each line-item in the table contains an id number as well as the corresponding department, price, and remaining stock quantity.
 
