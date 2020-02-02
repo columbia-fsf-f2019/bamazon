@@ -1,4 +1,4 @@
-# Bamazon: ## The Ultimate Shopping Experience!
+# Bamazon: the ultimate shopping experience!
 
 The BAMAZON experience begins with an initial greeting welcoming the customer and prompting them to answer Y/N if they would like to continue shopping. If yes, the user is presented with a list of the most popular items in stock. Each line-item in the table contains an id number as well as the corresponding department, price, and remaining stock quantity.
 
@@ -12,12 +12,12 @@ When an order is completed, a summary confirmation will be returned to the custo
 
 ## Building Bamazon: Required technologies
 
-To build this Node.js command line application, NPM is initialized and Inquirer and mysql NPM packages are installed in the root directory. The Inquirer module is required in order to prompt the customer.
+To build this NODE.js command line application, NPM is initialized and Inquirer and mysql NPM packages are installed in the root directory. The Inquirer module is required in order to prompt the customer.
 
-The inventory feauture is built using mysql database with a products table containing each item, their correpsonding ID, department, price and stock level.
+The inventory feauture is built using MySQL database with a products table containing each item, their correpsonding id, department, price and stock level.
 
 - Inquirer: (https://www.npmjs.com/package/inquirer)
-- mysql: (https://www.npmjs.com/package/mysql)
+- MySQL: (https://www.npmjs.com/package/mysql)
 
 ## Functionality for the Bamazon customer experience
 
