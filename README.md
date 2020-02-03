@@ -32,3 +32,7 @@ The inventory feauture is built using MySQL database with a products table conta
 ### When the customer decides not to stay;
 
 ![](images/not-staying.png)
+
+### Products table from MySQL database;
+
+![](images/MySQL_db_table.png)
